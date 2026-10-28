@@ -2996,36 +2996,36 @@ var _phEdit18=phEdit;phEdit=function(){var first=!PH.inited;_phEdit18.apply(this
  var tr2=document.querySelector('.bzs');if(tr2&&!tr2.querySelector('.bzfc'))tr2.insertAdjacentHTML('beforebegin','<button class="pill bzfc" onclick="bzFaces()">🎩 '+t('bz7')+'</button>')};
 /* OFFERTA FLASH (solo asporto): con ogni panino, una Estrella Damm 66 cl a prezzo speciale. Si spegne con CFG.fx.on=0. */
 S.fx0='Offerta flash|Flash deal|Offre flash|Blitzangebot|Oferta flash';
-S.fx1='Panino + Estrella da 66|Sandwich + 66 cl Estrella|Sandwich + Estrella 66 cl|Sandwich + Estrella 0,66|Bocadillo + Estrella de 66';
-S.fx2='Con ogni panino d’asporto, la tua Estrella Damm 66 cl costa meno.|With every takeaway sandwich, your 66 cl Estrella Damm costs less.|Avec chaque sandwich à emporter, ton Estrella Damm 66 cl coûte moins cher.|Zu jedem Sandwich zum Mitnehmen kostet deine Estrella Damm 66 cl weniger.|Con cada bocadillo para llevar, tu Estrella Damm de 66 cl cuesta menos.';
-S.fx3='con un panino|with a sandwich|avec un sandwich|mit Sandwich|con bocadillo';
+S.fx1='Estrella da 66 in offerta|66 cl Estrella on deal|Estrella 66 cl en promo|Estrella 0,66 im Angebot|Estrella de 66 en oferta';
+S.fx2='Con ogni panino, piatto o pinsa d’asporto, la tua Estrella Damm 66 cl costa meno.|With every takeaway sandwich, dish or pinsa, your 66 cl Estrella Damm costs less.|Avec chaque sandwich, plat ou pinsa à emporter, ton Estrella Damm 66 cl coûte moins cher.|Zu jedem Sandwich, Gericht oder jeder Pinsa zum Mitnehmen kostet deine Estrella Damm 66 cl weniger.|Con cada bocadillo, plato o pinsa para llevar, tu Estrella Damm de 66 cl cuesta menos.';
+S.fx3='con panino, piatto o pinsa|with a sandwich, dish or pinsa|avec sandwich, plat ou pinsa|mit Sandwich, Gericht oder Pinsa|con bocadillo, plato o pinsa';
 S.fx4='Aggiungi Estrella 66 cl|Add Estrella 66 cl|Ajouter Estrella 66 cl|Estrella 66 cl dazu|Añadir Estrella 66 cl';
-S.fx5='Il tuo panino ha la birra in offerta|Your sandwich unlocks the beer deal|Ton sandwich débloque la bière en promo|Dein Sandwich schaltet das Bier-Angebot frei|Tu bocadillo desbloquea la cerveza en oferta';
+S.fx5='Hai diritto alla birra in offerta|You’ve unlocked the beer deal|Tu as droit à la bière en promo|Du bekommst das Bier-Angebot|Tienes la cerveza en oferta';
 S.fx6='No, grazie|No, thanks|Non merci|Nein, danke|No, gracias';
 S.fx7='Risparmi|You save|Tu économises|Du sparst|Ahorras';
 S.fx8='Ancora disponibili in offerta|Still available at the deal price|Encore disponibles en promo|Noch zum Angebotspreis|Aún disponibles en oferta';
-S.fx9='Solo asporto · una per ogni panino|Takeaway only · one per sandwich|À emporter uniquement · une par sandwich|Nur zum Mitnehmen · eine pro Sandwich|Solo para llevar · una por bocadillo';
-S.fxa='Scegli il panino|Pick your sandwich|Choisis ton sandwich|Sandwich wählen|Elige tu bocadillo';
+S.fx9='Solo asporto · una per ogni panino, piatto o pinsa|Takeaway only · one per sandwich, dish or pinsa|À emporter uniquement · une par sandwich, plat ou pinsa|Nur zum Mitnehmen · eine pro Sandwich, Gericht oder Pinsa|Solo para llevar · una por bocadillo, plato o pinsa';
+S.fxa='Scegli cosa mangiare|Choose your food|Choisis quoi manger|Essen auswählen|Elige qué comer';
 S.fxb='Estrella in offerta aggiunta|Deal Estrella added|Estrella en promo ajoutée|Angebots-Estrella hinzugefügt|Estrella en oferta añadida';
 S.fxc='in offerta|deal|en promo|im Angebot|en oferta';S.fxd='Aggiungila|Add it|Ajoute-la|Dazu|Añádela';
 function fxOn(){return !!(CFG.fx&&CFG.fx.on)}
 function fxIt(){if(!fxOn())return null;var r=null;(D.bir||[]).forEach(function(g,gi){g.i.forEach(function(it,i){if(!r&&it[0]==CFG.fx.n)r=[gi,i,it]})});return r}
 function fxKey(){var F=fxIt();return F?'bir'+F[0]+'_'+F[1]:''}
 function fxFull(){var F=fxIt();if(!F)return 0;return (CFG.pa&&CFG.pa[F[2][0]]!=null)?CFG.pa[F[2][0]]:F[2][2]}
-function fxPan(){return cart.reduce(function(s,c){return /^(pan|comp)/.test(String(c.k))?s+c.q:s},0)}
+var FXK=/^(pan|comp|pia|crea|pin)\d*/,FXNO=0;function fxPan(){return cart.reduce(function(s,c){return /^(pan|comp|pia|crea|pin)/.test(String(c.k))&&!/^pane/.test(String(c.k))?s+c.q:s},0)}
 function fxQ(){var k=fxKey();return cart.reduce(function(s,c){return c.k==k||c.k==k+'fl'?s+c.q:s},0)}
 function fxSlots(){return MODE=='a'&&fxOn()?Math.max(0,fxPan()-fxQ()):0}
 function fxN(){var F=fxIt();if(!F)return;var k='bir'+F[0]+'_'+F[1],fk=k+'fl',a=null,b=null,ia=-1;cart.forEach(function(c,i){if(c.k==k){a=c;ia=i}if(c.k==fk)b=c});
  var E=(a?a.q:0)+(b?b.q:0);if(!E){return}var d=MODE=='a'?Math.min(E,fxPan()):0,rest=E-d;
- if(d>0){if(!b){b={k:fk,n:F[2][0],p:CFG.fx.p,q:0,s:'offerta flash panino'};if(ia>-1)cart.splice(ia+1,0,b);else cart.push(b)}b.q=d;b.p=CFG.fx.p}else if(b)cart.splice(cart.indexOf(b),1);
+ if(d>0){if(!b){b={k:fk,n:F[2][0],p:CFG.fx.p,q:0,s:'offerta flash'};if(ia>-1)cart.splice(ia+1,0,b);else cart.push(b)}b.q=d;b.p=CFG.fx.p}else if(b)cart.splice(cart.indexOf(b),1);
  if(rest>0){if(!a){a={k:k,n:F[2][0],p:F[2][2],q:0,s:''};cart.splice(cart.indexOf(b),0,a)}a.q=rest}else if(a)cart.splice(cart.indexOf(a),1)}
 function fxSave(){var F=fxIt();if(!F)return 0;var k='bir'+F[0]+'_'+F[1];return cart.reduce(function(s,c){return c.k==k+'fl'?s+(fxFull()-c.p)*c.q:s},0)}
 function fxStrike(){return '<svg class="fxs" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13C25 9 55 8 97 6"/></svg>'}
 function fxCard(btn){var o=f(fxFull()).replace('€ ',''),n=f(CFG.fx.p).replace('€ ','');
- return '<aside class="fx" aria-label="'+t('fx0')+': '+t('fx1')+', '+n+' € '+t('fx3')+'"><span class="fxst" aria-hidden="true">⚡ '+t('fx0')+'</span><div class="fxw"><div class="fxt"><b>'+t('fx1')+'</b><p>'+t('fx2')+'</p><small>'+t('fx9')+'</small></div><div class="fxp" aria-hidden="true"><span class="fxo">'+o+fxStrike()+'</span><span class="fxn">'+n+'<i>€</i></span></div></div>'+(btn?'<button class="fxbt" onclick="go(\'pan\')">'+t('fxa')+' →</button>':'')+'</aside>'}
+ return '<aside class="fx" aria-label="'+t('fx0')+': '+t('fx1')+', '+n+' € '+t('fx3')+'"><span class="fxst" aria-hidden="true">⚡ '+t('fx0')+'</span><div class="fxw"><div class="fxt"><b>'+t('fx1')+'</b><p>'+t('fx2')+'</p><small>'+t('fx9')+'</small></div><div class="fxp" aria-hidden="true"><span class="fxo">'+o+fxStrike()+'</span><span class="fxn">'+n+'<i>€</i></span></div></div>'+(btn?'<button class="fxbt" onclick="go(\'gf\')">'+t('fxa')+' →</button>':'')+'</aside>'}
 function fxAdd(){var F=fxIt();if(!F)return;cl();sgHide();add('bir'+F[0]+'_'+F[1],F[2][0],F[2][2],'',1);toast('🍺 '+t('fxb'));if(document.getElementById('ov').classList.contains('on'))openC()}
-function fxSheet(){var e=document.getElementById('sg');if(!e||fxSlots()<1)return;if(document.getElementById('ov').classList.contains('on'))return;var n=f(CFG.fx.p).replace('€ ',''),o=f(fxFull()).replace('€ ','');
- e.innerHTML='<div class="fxsg"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx5')+'</b><p class="pairl">Estrella Damm 66 cl · <s>'+o+' €</s> <em>'+n+' €</em></p><div><button class="pill fxgo" onclick="fxAdd()">+ '+t('fxd')+' · <b>'+n+' €</b></button><button class="pill" onclick="sgHide()">'+t('fx6')+'</button></div></div><button onclick="sgHide()" aria-label="'+t('close')+'">×</button>';
+function fxSheet(){var e=document.getElementById('sg');if(!e||FXNO||fxSlots()<1)return;if(document.getElementById('ov').classList.contains('on'))return;var n=f(CFG.fx.p).replace('€ ',''),o=f(fxFull()).replace('€ ','');
+ e.innerHTML='<div class="fxsg"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx5')+'</b><p class="pairl">Estrella Damm 66 cl · <s>'+o+' €</s> <em>'+n+' €</em></p><div><button class="pill fxgo" onclick="fxAdd()">+ '+t('fxd')+' · <b>'+n+' €</b></button><button class="pill" onclick="fxNo()">'+t('fx6')+'</button></div></div><button onclick="fxNo()" aria-label="'+t('close')+'">×</button>';
  e.classList.add('on','fxon');clearTimeout(sgT);sgT=setTimeout(function(){e.classList.remove('fxon');sgHide()},12000)}
 /* --- prezzi e righe del carrello --- */
 var _R20=R;R=function(){try{if(fxOn())fxN()}catch(e){}var r=_R20.apply(this,arguments);try{fxDom()}catch(e){}return r};
@@ -3033,17 +3033,19 @@ var _qOf20=qOf;qOf=function(key){var q=_qOf20.apply(this,arguments);try{if(fxOn(
 var _cd20=card;card=function(it,act,cls,oc){var h=_cd20.apply(this,arguments);try{if(h&&MODE=='a'&&fxOn()&&it[0]==CFG.fx.n){var n=f(CFG.fx.p).replace('€ ','');h=h.replace(/(<span class="pr[^"]*">)((?:<svg[\s\S]*?<\/svg>)?)([^<]*)(<\/span>)/,'<span class="fxrow"><span class="fxo sm">$3'+fxStrike()+'</span>$1$2'+n+'$4<small class="fxl">⚡ '+t('fx3')+'</small></span>').replace('class="r cr ','class="r cr fxr ')}}catch(e){}return h};
 var _cl20=cartLine;cartLine=function(c,i){var h=_cl20.apply(this,arguments);try{if(/fl$/.test(String(c.k))&&fxOn()){var o=f(fxFull()*c.q);h=h.replace(/<small>[^<]*<\/small>/,'<small class="fxtag">⚡ '+t('fx0')+' · '+t('fx3')+'</small>').replace('<span class="pr">','<span class="pr"><s class="fxold">'+o+'</s> ')}}catch(e){}return h};
 var _oc20=openC;openC=function(){var r=_oc20.apply(this,arguments);try{if(MODE!='a'||!fxOn())return r;var p=document.getElementById('pn');if(!p)return r;var sl=fxSlots(),sv=fxSave(),n=f(CFG.fx.p).replace('€ ','');var x='';
- if(sl>0)x+='<div class="fxc"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx8')+': '+sl+'</b><p>Estrella Damm 66 cl · <s>'+f(fxFull()).replace('€ ','')+' €</s> <em>'+n+' €</em></p><button class="cta fxgo" onclick="fxAdd()">+ '+t('fx4')+' · '+n+' €</button></div>';
+ if(sl>0&&!FXNO)x+='<div class="fxc"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx8')+': '+sl+'</b><p>Estrella Damm 66 cl · <s>'+f(fxFull()).replace('€ ','')+' €</s> <em>'+n+' €</em></p><button class="cta fxgo" onclick="fxAdd()">+ '+t('fx4')+' · '+n+' €</button></div>';
  if(sv>0)x+='<div class="fxsv">⚡ '+t('fx7')+' <b>'+f(sv)+'</b></div>';
  if(x){var ls=p.querySelectorAll('.ln'),last=ls[ls.length-1];if(last)last.insertAdjacentHTML('afterend',x);else{var h3=p.querySelector('h3');if(h3)h3.insertAdjacentHTML('afterend',x)}}}catch(e){}return r};
-var _ot20=orderText;orderText=function(){var x=_ot20.apply(this,arguments);try{var sv=MODE=='a'?fxSave():0;if(sv>0)x=x.replace(/\nTotale:/,'\nOfferta flash panino + Estrella 66 cl: risparmi '+f(sv)+'\nTotale:')}catch(e){}return x};
+var _ot20=orderText;orderText=function(){var x=_ot20.apply(this,arguments);try{var sv=MODE=='a'?fxSave():0;if(sv>0)x=x.replace(/\nTotale:/,'\nOfferta flash Estrella 66 cl: risparmi '+f(sv)+'\nTotale:')}catch(e){}return x};
 /* --- l'offerta dopo ogni panino --- */
-var _add20=add;add=function(k){var r=_add20.apply(this,arguments);try{if(MODE=='a'&&fxOn()&&/^(pan|comp)/.test(String(k))&&fxSlots()>0)setTimeout(fxSheet,820)}catch(e){}return r};
+var _add20=add;add=function(k){var r=_add20.apply(this,arguments);try{if(MODE=='a'&&fxOn()&&/^(pan|comp|pia|crea|pin)/.test(String(k))&&!FXNO&&fxSlots()>0)setTimeout(fxSheet,820)}catch(e){}return r};
 var _sh20=sgHide;sgHide=function(){var e=document.getElementById('sg');if(e)e.classList.remove('fxon');return _sh20.apply(this,arguments)};
 /* --- dove si vede: Home, Panini, Componi, Birre (solo asporto) --- */
 function fxDom(){if(MODE!='a'||!fxOn()||Q.trim())return;var m=document.getElementById('m');if(!m||m.querySelector('.fx'))return;
  if(tab=='home'){var mb=m.querySelector('.mb');if(mb)mb.insertAdjacentHTML('beforebegin',fxCard(1))}
- else if(tab=='pan'||tab=='comp'||tab=='bir'){var s=m.querySelector('h2.sec');if(s)s.insertAdjacentHTML('afterend',fxCard(tab=='bir'))}}
+ else if(['pan','comp','pia','crea','pin','bir'].indexOf(tab)>-1){var s=m.querySelector('h2.sec');if(s)s.insertAdjacentHTML('afterend',fxCard(tab=='bir'))}}
+
+function fxNo(){FXNO=1;sgHide()}
 
 R();if(!MODE)splash();
 <\/script></body></html></script>
@@ -4108,36 +4110,36 @@ var _phEdit18=phEdit;phEdit=function(){var first=!PH.inited;_phEdit18.apply(this
  var tr2=document.querySelector('.bzs');if(tr2&&!tr2.querySelector('.bzfc'))tr2.insertAdjacentHTML('beforebegin','<button class="pill bzfc" onclick="bzFaces()">🎩 '+t('bz7')+'</button>')};
 /* OFFERTA FLASH (solo asporto): con ogni panino, una Estrella Damm 66 cl a prezzo speciale. Si spegne con CFG.fx.on=0. */
 S.fx0='Offerta flash|Flash deal|Offre flash|Blitzangebot|Oferta flash';
-S.fx1='Panino + Estrella da 66|Sandwich + 66 cl Estrella|Sandwich + Estrella 66 cl|Sandwich + Estrella 0,66|Bocadillo + Estrella de 66';
-S.fx2='Con ogni panino d’asporto, la tua Estrella Damm 66 cl costa meno.|With every takeaway sandwich, your 66 cl Estrella Damm costs less.|Avec chaque sandwich à emporter, ton Estrella Damm 66 cl coûte moins cher.|Zu jedem Sandwich zum Mitnehmen kostet deine Estrella Damm 66 cl weniger.|Con cada bocadillo para llevar, tu Estrella Damm de 66 cl cuesta menos.';
-S.fx3='con un panino|with a sandwich|avec un sandwich|mit Sandwich|con bocadillo';
+S.fx1='Estrella da 66 in offerta|66 cl Estrella on deal|Estrella 66 cl en promo|Estrella 0,66 im Angebot|Estrella de 66 en oferta';
+S.fx2='Con ogni panino, piatto o pinsa d’asporto, la tua Estrella Damm 66 cl costa meno.|With every takeaway sandwich, dish or pinsa, your 66 cl Estrella Damm costs less.|Avec chaque sandwich, plat ou pinsa à emporter, ton Estrella Damm 66 cl coûte moins cher.|Zu jedem Sandwich, Gericht oder jeder Pinsa zum Mitnehmen kostet deine Estrella Damm 66 cl weniger.|Con cada bocadillo, plato o pinsa para llevar, tu Estrella Damm de 66 cl cuesta menos.';
+S.fx3='con panino, piatto o pinsa|with a sandwich, dish or pinsa|avec sandwich, plat ou pinsa|mit Sandwich, Gericht oder Pinsa|con bocadillo, plato o pinsa';
 S.fx4='Aggiungi Estrella 66 cl|Add Estrella 66 cl|Ajouter Estrella 66 cl|Estrella 66 cl dazu|Añadir Estrella 66 cl';
-S.fx5='Il tuo panino ha la birra in offerta|Your sandwich unlocks the beer deal|Ton sandwich débloque la bière en promo|Dein Sandwich schaltet das Bier-Angebot frei|Tu bocadillo desbloquea la cerveza en oferta';
+S.fx5='Hai diritto alla birra in offerta|You’ve unlocked the beer deal|Tu as droit à la bière en promo|Du bekommst das Bier-Angebot|Tienes la cerveza en oferta';
 S.fx6='No, grazie|No, thanks|Non merci|Nein, danke|No, gracias';
 S.fx7='Risparmi|You save|Tu économises|Du sparst|Ahorras';
 S.fx8='Ancora disponibili in offerta|Still available at the deal price|Encore disponibles en promo|Noch zum Angebotspreis|Aún disponibles en oferta';
-S.fx9='Solo asporto · una per ogni panino|Takeaway only · one per sandwich|À emporter uniquement · une par sandwich|Nur zum Mitnehmen · eine pro Sandwich|Solo para llevar · una por bocadillo';
-S.fxa='Scegli il panino|Pick your sandwich|Choisis ton sandwich|Sandwich wählen|Elige tu bocadillo';
+S.fx9='Solo asporto · una per ogni panino, piatto o pinsa|Takeaway only · one per sandwich, dish or pinsa|À emporter uniquement · une par sandwich, plat ou pinsa|Nur zum Mitnehmen · eine pro Sandwich, Gericht oder Pinsa|Solo para llevar · una por bocadillo, plato o pinsa';
+S.fxa='Scegli cosa mangiare|Choose your food|Choisis quoi manger|Essen auswählen|Elige qué comer';
 S.fxb='Estrella in offerta aggiunta|Deal Estrella added|Estrella en promo ajoutée|Angebots-Estrella hinzugefügt|Estrella en oferta añadida';
 S.fxc='in offerta|deal|en promo|im Angebot|en oferta';S.fxd='Aggiungila|Add it|Ajoute-la|Dazu|Añádela';
 function fxOn(){return !!(CFG.fx&&CFG.fx.on)}
 function fxIt(){if(!fxOn())return null;var r=null;(D.bir||[]).forEach(function(g,gi){g.i.forEach(function(it,i){if(!r&&it[0]==CFG.fx.n)r=[gi,i,it]})});return r}
 function fxKey(){var F=fxIt();return F?'bir'+F[0]+'_'+F[1]:''}
 function fxFull(){var F=fxIt();if(!F)return 0;return (CFG.pa&&CFG.pa[F[2][0]]!=null)?CFG.pa[F[2][0]]:F[2][2]}
-function fxPan(){return cart.reduce(function(s,c){return /^(pan|comp)/.test(String(c.k))?s+c.q:s},0)}
+var FXK=/^(pan|comp|pia|crea|pin)\d*/,FXNO=0;function fxPan(){return cart.reduce(function(s,c){return /^(pan|comp|pia|crea|pin)/.test(String(c.k))&&!/^pane/.test(String(c.k))?s+c.q:s},0)}
 function fxQ(){var k=fxKey();return cart.reduce(function(s,c){return c.k==k||c.k==k+'fl'?s+c.q:s},0)}
 function fxSlots(){return MODE=='a'&&fxOn()?Math.max(0,fxPan()-fxQ()):0}
 function fxN(){var F=fxIt();if(!F)return;var k='bir'+F[0]+'_'+F[1],fk=k+'fl',a=null,b=null,ia=-1;cart.forEach(function(c,i){if(c.k==k){a=c;ia=i}if(c.k==fk)b=c});
  var E=(a?a.q:0)+(b?b.q:0);if(!E){return}var d=MODE=='a'?Math.min(E,fxPan()):0,rest=E-d;
- if(d>0){if(!b){b={k:fk,n:F[2][0],p:CFG.fx.p,q:0,s:'offerta flash panino'};if(ia>-1)cart.splice(ia+1,0,b);else cart.push(b)}b.q=d;b.p=CFG.fx.p}else if(b)cart.splice(cart.indexOf(b),1);
+ if(d>0){if(!b){b={k:fk,n:F[2][0],p:CFG.fx.p,q:0,s:'offerta flash'};if(ia>-1)cart.splice(ia+1,0,b);else cart.push(b)}b.q=d;b.p=CFG.fx.p}else if(b)cart.splice(cart.indexOf(b),1);
  if(rest>0){if(!a){a={k:k,n:F[2][0],p:F[2][2],q:0,s:''};cart.splice(cart.indexOf(b),0,a)}a.q=rest}else if(a)cart.splice(cart.indexOf(a),1)}
 function fxSave(){var F=fxIt();if(!F)return 0;var k='bir'+F[0]+'_'+F[1];return cart.reduce(function(s,c){return c.k==k+'fl'?s+(fxFull()-c.p)*c.q:s},0)}
 function fxStrike(){return '<svg class="fxs" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13C25 9 55 8 97 6"/></svg>'}
 function fxCard(btn){var o=f(fxFull()).replace('€ ',''),n=f(CFG.fx.p).replace('€ ','');
- return '<aside class="fx" aria-label="'+t('fx0')+': '+t('fx1')+', '+n+' € '+t('fx3')+'"><span class="fxst" aria-hidden="true">⚡ '+t('fx0')+'</span><div class="fxw"><div class="fxt"><b>'+t('fx1')+'</b><p>'+t('fx2')+'</p><small>'+t('fx9')+'</small></div><div class="fxp" aria-hidden="true"><span class="fxo">'+o+fxStrike()+'</span><span class="fxn">'+n+'<i>€</i></span></div></div>'+(btn?'<button class="fxbt" onclick="go(\'pan\')">'+t('fxa')+' →</button>':'')+'</aside>'}
+ return '<aside class="fx" aria-label="'+t('fx0')+': '+t('fx1')+', '+n+' € '+t('fx3')+'"><span class="fxst" aria-hidden="true">⚡ '+t('fx0')+'</span><div class="fxw"><div class="fxt"><b>'+t('fx1')+'</b><p>'+t('fx2')+'</p><small>'+t('fx9')+'</small></div><div class="fxp" aria-hidden="true"><span class="fxo">'+o+fxStrike()+'</span><span class="fxn">'+n+'<i>€</i></span></div></div>'+(btn?'<button class="fxbt" onclick="go(\'gf\')">'+t('fxa')+' →</button>':'')+'</aside>'}
 function fxAdd(){var F=fxIt();if(!F)return;cl();sgHide();add('bir'+F[0]+'_'+F[1],F[2][0],F[2][2],'',1);toast('🍺 '+t('fxb'));if(document.getElementById('ov').classList.contains('on'))openC()}
-function fxSheet(){var e=document.getElementById('sg');if(!e||fxSlots()<1)return;if(document.getElementById('ov').classList.contains('on'))return;var n=f(CFG.fx.p).replace('€ ',''),o=f(fxFull()).replace('€ ','');
- e.innerHTML='<div class="fxsg"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx5')+'</b><p class="pairl">Estrella Damm 66 cl · <s>'+o+' €</s> <em>'+n+' €</em></p><div><button class="pill fxgo" onclick="fxAdd()">+ '+t('fxd')+' · <b>'+n+' €</b></button><button class="pill" onclick="sgHide()">'+t('fx6')+'</button></div></div><button onclick="sgHide()" aria-label="'+t('close')+'">×</button>';
+function fxSheet(){var e=document.getElementById('sg');if(!e||FXNO||fxSlots()<1)return;if(document.getElementById('ov').classList.contains('on'))return;var n=f(CFG.fx.p).replace('€ ',''),o=f(fxFull()).replace('€ ','');
+ e.innerHTML='<div class="fxsg"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx5')+'</b><p class="pairl">Estrella Damm 66 cl · <s>'+o+' €</s> <em>'+n+' €</em></p><div><button class="pill fxgo" onclick="fxAdd()">+ '+t('fxd')+' · <b>'+n+' €</b></button><button class="pill" onclick="fxNo()">'+t('fx6')+'</button></div></div><button onclick="fxNo()" aria-label="'+t('close')+'">×</button>';
  e.classList.add('on','fxon');clearTimeout(sgT);sgT=setTimeout(function(){e.classList.remove('fxon');sgHide()},12000)}
 /* --- prezzi e righe del carrello --- */
 var _R20=R;R=function(){try{if(fxOn())fxN()}catch(e){}var r=_R20.apply(this,arguments);try{fxDom()}catch(e){}return r};
@@ -4145,17 +4147,19 @@ var _qOf20=qOf;qOf=function(key){var q=_qOf20.apply(this,arguments);try{if(fxOn(
 var _cd20=card;card=function(it,act,cls,oc){var h=_cd20.apply(this,arguments);try{if(h&&MODE=='a'&&fxOn()&&it[0]==CFG.fx.n){var n=f(CFG.fx.p).replace('€ ','');h=h.replace(/(<span class="pr[^"]*">)((?:<svg[\s\S]*?<\/svg>)?)([^<]*)(<\/span>)/,'<span class="fxrow"><span class="fxo sm">$3'+fxStrike()+'</span>$1$2'+n+'$4<small class="fxl">⚡ '+t('fx3')+'</small></span>').replace('class="r cr ','class="r cr fxr ')}}catch(e){}return h};
 var _cl20=cartLine;cartLine=function(c,i){var h=_cl20.apply(this,arguments);try{if(/fl$/.test(String(c.k))&&fxOn()){var o=f(fxFull()*c.q);h=h.replace(/<small>[^<]*<\/small>/,'<small class="fxtag">⚡ '+t('fx0')+' · '+t('fx3')+'</small>').replace('<span class="pr">','<span class="pr"><s class="fxold">'+o+'</s> ')}}catch(e){}return h};
 var _oc20=openC;openC=function(){var r=_oc20.apply(this,arguments);try{if(MODE!='a'||!fxOn())return r;var p=document.getElementById('pn');if(!p)return r;var sl=fxSlots(),sv=fxSave(),n=f(CFG.fx.p).replace('€ ','');var x='';
- if(sl>0)x+='<div class="fxc"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx8')+': '+sl+'</b><p>Estrella Damm 66 cl · <s>'+f(fxFull()).replace('€ ','')+' €</s> <em>'+n+' €</em></p><button class="cta fxgo" onclick="fxAdd()">+ '+t('fx4')+' · '+n+' €</button></div>';
+ if(sl>0&&!FXNO)x+='<div class="fxc"><span class="sgk">⚡ '+t('fx0')+'</span><b>'+t('fx8')+': '+sl+'</b><p>Estrella Damm 66 cl · <s>'+f(fxFull()).replace('€ ','')+' €</s> <em>'+n+' €</em></p><button class="cta fxgo" onclick="fxAdd()">+ '+t('fx4')+' · '+n+' €</button></div>';
  if(sv>0)x+='<div class="fxsv">⚡ '+t('fx7')+' <b>'+f(sv)+'</b></div>';
  if(x){var ls=p.querySelectorAll('.ln'),last=ls[ls.length-1];if(last)last.insertAdjacentHTML('afterend',x);else{var h3=p.querySelector('h3');if(h3)h3.insertAdjacentHTML('afterend',x)}}}catch(e){}return r};
-var _ot20=orderText;orderText=function(){var x=_ot20.apply(this,arguments);try{var sv=MODE=='a'?fxSave():0;if(sv>0)x=x.replace(/\nTotale:/,'\nOfferta flash panino + Estrella 66 cl: risparmi '+f(sv)+'\nTotale:')}catch(e){}return x};
+var _ot20=orderText;orderText=function(){var x=_ot20.apply(this,arguments);try{var sv=MODE=='a'?fxSave():0;if(sv>0)x=x.replace(/\nTotale:/,'\nOfferta flash Estrella 66 cl: risparmi '+f(sv)+'\nTotale:')}catch(e){}return x};
 /* --- l'offerta dopo ogni panino --- */
-var _add20=add;add=function(k){var r=_add20.apply(this,arguments);try{if(MODE=='a'&&fxOn()&&/^(pan|comp)/.test(String(k))&&fxSlots()>0)setTimeout(fxSheet,820)}catch(e){}return r};
+var _add20=add;add=function(k){var r=_add20.apply(this,arguments);try{if(MODE=='a'&&fxOn()&&/^(pan|comp|pia|crea|pin)/.test(String(k))&&!FXNO&&fxSlots()>0)setTimeout(fxSheet,820)}catch(e){}return r};
 var _sh20=sgHide;sgHide=function(){var e=document.getElementById('sg');if(e)e.classList.remove('fxon');return _sh20.apply(this,arguments)};
 /* --- dove si vede: Home, Panini, Componi, Birre (solo asporto) --- */
 function fxDom(){if(MODE!='a'||!fxOn()||Q.trim())return;var m=document.getElementById('m');if(!m||m.querySelector('.fx'))return;
  if(tab=='home'){var mb=m.querySelector('.mb');if(mb)mb.insertAdjacentHTML('beforebegin',fxCard(1))}
- else if(tab=='pan'||tab=='comp'||tab=='bir'){var s=m.querySelector('h2.sec');if(s)s.insertAdjacentHTML('afterend',fxCard(tab=='bir'))}}
+ else if(['pan','comp','pia','crea','pin','bir'].indexOf(tab)>-1){var s=m.querySelector('h2.sec');if(s)s.insertAdjacentHTML('afterend',fxCard(tab=='bir'))}}
+
+function fxNo(){FXNO=1;sgHide()}
 
 R();if(!MODE)splash();
 </script></body></html>
